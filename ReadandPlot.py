@@ -47,6 +47,7 @@ y_val_c=[x[1] for x in centroids]
 
 
 cent1=[]
+tempcent=[]
 cent2=[]
 cent3=[]
 c1=centroids[0]
@@ -59,46 +60,49 @@ m3=0
 
 
 
-
-for i in data:
-    d1=math.sqrt(((i[0]-c1[0])*(i[0]-c1[0])+(i[1]-c1[1])*(i[1]-c1[1])))
-    d2=math.sqrt(((i[0]-c2[0])*(i[0]-c2[0])+(i[1]-c2[1])*(i[1]-c2[1])))
-    d3=math.sqrt(((i[0]-c3[0])*(i[0]-c3[0])+(i[1]-c3[1])*(i[1]-c3[1])))
+while sorted(tempcent)==sorted(cent1)
+    for i in data:
+        d1=math.sqrt(((i[0]-c1[0])*(i[0]-c1[0])+(i[1]-c1[1])*(i[1]-c1[1])))
+        d2=math.sqrt(((i[0]-c2[0])*(i[0]-c2[0])+(i[1]-c2[1])*(i[1]-c2[1])))
+        d3=math.sqrt(((i[0]-c3[0])*(i[0]-c3[0])+(i[1]-c3[1])*(i[1]-c3[1])))
     #print(i)
-    if d1<d2 and d1<d3:
-        cent1.append(i)
-    elif d2<d1 and d2<d3:
-        cent2.append(i)
-    else:
-        cent3.append(i)
+        if d1<d2 and d1<d3:
+            cent1.append(i)
+            tempcent.append(i)
+        elif d2<d1 and d2<d3:
+            cent2.append(i)
+        else:
+            cent3.append(i)
 
 
-m1=[sum(v)/len(v) for v in zip(*cent1)]
-m2=[sum(v)/len(v)  for v in zip(*cent2)]
-m3=[sum(v)/len(v) for v in zip(*cent3)]
+    m1=[sum(v)/len(v) for v in zip(*cent1)]
+    m2=[sum(v)/len(v)  for v in zip(*cent2)]
+    m3=[sum(v)/len(v) for v in zip(*cent3)]
 
 
-c1=m1
-c2=m2
-c3=m3
+    c1=m1
+    c2=m2
+    c3=m3
 
 
 
-x_new=[x[0] for x in cent1]
-
-y_new=[x[1] for x in cent1]
-x_new1=[x[0] for x in cent2]
-y_new1=[x[1] for x in cent2]
-x_new2=[x[0] for x in cent3]
-y_new2=[x[1] for x in cent3]
-
-plt.scatter(x_val_c,y_val_c,c="#c31907")
-
-plt.scatter(x_new,y_new,c="#2124e1")
-plt.scatter(x_new1,y_new1,c="#48bf2d")
-plt.scatter(x_new2,y_new2,c="#1c1413")
 
 
-plt.show()
+    x_new=[x[0] for x in cent1]
+
+    y_new=[x[1] for x in cent1]
+    x_new1=[x[0] for x in cent2]
+    y_new1=[x[1] for x in cent2]
+    x_new2=[x[0] for x in cent3]
+    y_new2=[x[1] for x in cent3]
+
+    plt.scatter(x_val_c,y_val_c,c="#c31907")
+
+    plt.scatter(x_new,y_new,c="#2124e1")
+    plt.scatter(x_new1,y_new1,c="#48bf2d")
+    plt.scatter(x_new2,y_new2,c="#1c1413")
+
+
+    plt.show()
 
 
