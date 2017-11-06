@@ -15,7 +15,7 @@ class Clusterer:
         self.centroid2=[]
         self.centroid3=[]
 
-    def first_iter(self): #I wrote first iteration manually(Tried either way, but I failed to do so)
+    def please_first_iter(self): #I wrote first iteration manually(Tried either way, but I failed to do so)
         for i in self.data:
 
             self.centroid1=self.please_choose_random_centroid()[0] #for only first iteration I want to initialize centroids with random centroids
@@ -38,10 +38,11 @@ class Clusterer:
                 self.cluster3.append(i)
         
 
-
+    #this function helps to choose random centroid from dataset itself
     def please_choose_random_centroid(self):
         centroid=random.sample(self.data,3)
         return centroid
+    #this function clusters elements(like first iteration, the only difference I use updated centroids not random ones)
     def please_cluster(self):
         
         for i in self.data:
@@ -61,7 +62,7 @@ class Clusterer:
             else:
                 self.cluster3.append(i)
         
-
+    #here I update centroids by finding mean of clusters
     def please_update_centroids(self):
                 
         mean1=[sum(clus)/len(clus) for clus in zip(*self.cluster1)]
@@ -76,24 +77,28 @@ class Clusterer:
     
 
     
-
+#created object of Clusterer class
 ob=Clusterer()
-ob.first_iter()
+#I first iterate and cluster data
+ob.please_first_iter()
 counter=0
-mean1=ob.please_update_centroids()[0]
-mean2=ob.please_update_centroids()[1]
-mean3=ob.please_update_centroids()[2]
 
-while counter<5:
+#I am ashamed to say that I iterate through fixed number(5) of times
+
+while counter<7:
+    #3. I empty cluster array
     ob.cluster1=[]
     ob.cluster2=[]
     ob.cluster3=[]
+    #1. I cluster elements
     ob.please_cluster()
+    #2. then update centroids
     ob.please_update_centroids()
     
 
     counter+=1
 
+    #for every cluster I find x and y elements 
 
     x_cl1=[x[0] for x in ob.cluster1]
     y_cl1=[x[1] for x in ob.cluster1]
@@ -104,10 +109,14 @@ while counter<5:
     x_cl3=[x[0] for x in ob.cluster3]
     y_cl3=[x[1] for x in ob.cluster3]
 
+    #draw each element with specific color
     plt.scatter(x_cl1,y_cl1,c="#2124e1")
     plt.scatter(x_cl2,y_cl2,c="#48bf2d")
     plt.scatter(x_cl3,y_cl3,c="#1c1413")
+    #show graph
     plt.show()
+
+    #I draw graph inside while because I want it to draw graph for each iteration
 
 
 
