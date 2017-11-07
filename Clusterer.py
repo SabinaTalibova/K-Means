@@ -119,7 +119,7 @@ while counter<7:
     #I draw graph inside while because I want it to draw graph for each iteration
 
 
-
+print(ob.cluster3)
 
 
 
